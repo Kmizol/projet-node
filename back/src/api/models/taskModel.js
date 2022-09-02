@@ -6,6 +6,7 @@ let taskSchema = new Schema({
    
    text :{
     type:String,
+    required: true
    },
 },{versionKey: false});
 

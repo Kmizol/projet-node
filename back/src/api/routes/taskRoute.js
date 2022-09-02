@@ -4,7 +4,8 @@ module.exports = (server) => {
 
     server.route('/tasks')
         .get(taskController.listAllTasks)
-        .post(taskController.createATask);
+        .post(taskController.createATask)
+        .delete(taskController.deleteAllTasks);
 
     server.route('/tasks/:task_id') // req.params.task_id
         .get(taskController.getATask)

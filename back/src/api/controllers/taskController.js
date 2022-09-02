@@ -82,3 +82,9 @@ exports.deleteATask = (req, res) => {
         }
     });
 }
+
+exports.deleteAllTasks = (req, res) => {
+    TaskModel.remove( function(err) {
+    console.log("Toutes les taches ont été supprimé"); });
+
+}

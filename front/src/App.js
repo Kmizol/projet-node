@@ -26,7 +26,7 @@ function App() {
   function onSubmit(e) {
     e.preventDefault();
     addNewTask();
-   
+    
   }
 
   function addNewTask() {
@@ -41,6 +41,17 @@ function App() {
       inputText.current.value = "");
     
   }
+
+
+
+  const deleteAllTask = event => {
+    console.log(event.currentTarget.id)
+    fetch(`http://localhost:8080/tasks`, {
+      method: "DELETE"}
+      )
+  };
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -48,9 +59,10 @@ function App() {
       </header>
       <form onSubmit={onSubmit}>
         <input id="add" ref={inputText} type="text" placeholder="Tache à faire.." />
-        &nbsp; <button>Ajouter</button>
+        &nbsp; <button >Ajouter</button>
       </form>
       <Tasks tasks={tasks} />
+      <button style={{marginTop:"50px"}}  onClick={deleteAllTask}>Supprimer Tout</button>
     </div>
   );
 }
