@@ -1,0 +1,49 @@
+version: '3.3'
+services:
+
+  front:
+    container_name: front
+    image: 'node:latest'
+    working_dir: /home/node/app
+    command:
+      - /bin/sh
+      - '-c'
+      - 'npm install && npm start'
+    ports:
+      - '3000:3000'
+    volumes:
+      - './front:/home/node/app'
+    links:
+      - back
+    networks:
+      - my-network2
+
+  back:
+    container_name: back
+    image: 'node:latest'
+    working_dir: /home/node/app
+    command:
+      - /bin/sh
+      - '-c'
+      - 'npm install && npm start'
+    ports:
+      - '8080:8080'
+    volumes:
+      - './back/src:/home/node/app'
+    links:
+      - mongo
+    networks:
+      - my-network1
+      - my-network2
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - my-network1
+networks:
+  my-network1:
+    driver: bridge
+  my-network2:
+    driver: bridge
