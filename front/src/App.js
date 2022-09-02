@@ -47,7 +47,7 @@ function App() {
         <p>Tache</p>
       </header>
       <form onSubmit={onSubmit}>
-        <input ref={inputText} type="text" placeholder="Tache à faire.." />
+        <input id="add" ref={inputText} type="text" placeholder="Tache à faire.." />
         &nbsp; <button>Ajouter</button>
       </form>
       <Tasks tasks={tasks} />
