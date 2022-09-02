@@ -7,8 +7,9 @@ exports.listAllTasks = async (req, res) => {
           const tasks = await TaskModel.find();
           res.status(200).json({
             tasks: tasks.map((task) => ({
-              id: task.id,
+              _id: task.id,
               text: task.text,
+             
             })),
           });
         } catch (err) {

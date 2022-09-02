@@ -8,19 +8,25 @@ function App() {
   const apiUrl = "http://localhost:8080";
   const [tasks, setTasks] = useState([]);
 
+  
   useEffect(() => {
     async function fetchTasks() {
       const res = await fetch(`${apiUrl}/tasks`);
       const data = await res.json();
       setTasks(data.tasks);
+      //console.log(data.tasks)
     }
 
     fetchTasks();
+    setInterval(fetchTasks,1000);
   }, []);
+  
+  
 
   function onSubmit(e) {
     e.preventDefault();
     addNewTask();
+   
   }
 
   function addNewTask() {
@@ -31,17 +37,10 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ text }),
-    }).then(async (res) => {
-      const data = await res.json();
-
-      const newData = [...tasks, data.task];
-      setTasks(newData);
-      inputText.current.value = "";
-    });
+    }).then(
+      inputText.current.value = "");
+    
   }
-
-
-  
   return (
     <div className="App">
       <header className="App-header">

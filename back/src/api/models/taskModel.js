@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
 let taskSchema = new Schema({
+   
    text :{
     type:String,
-    text:String,
-   }
-});
+   },
+},{versionKey: false});
 
 const TaskModel = mongoose.model('Objectif', taskSchema);
 

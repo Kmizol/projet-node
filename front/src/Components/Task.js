@@ -1,4 +1,4 @@
-function Task({ text, id }) {
+function Task({ text,id }) {
   return <div><p style={{ color: "white", fontSize: "25px" }}>{text}</p><button type="button" id={id} onClick={deleteTask}>Supprimer</button></div>
 }
 
