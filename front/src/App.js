@@ -5,23 +5,28 @@ import Tasks from "./Components/Tasks";
 
 function App() {
   const inputText = useRef("");
-  const apiUrl = "http://localhost:8080";
+  var apiUrl = "http://localhost:8080";
+  var apisearchURL = "http://localhost:8080/tasks"
   const [tasks, setTasks] = useState([]);
-
+  function FiltreAFaire () {
+    
+    apisearchURL = "http://localhost:8080/tasks/etat/false";
+    console.log(apisearchURL);
+  };
   
   useEffect(() => {
     async function fetchTasks() {
-      const res = await fetch(`${apiUrl}/tasks`);
+      const res = await fetch(`${apisearchURL}`);
       const data = await res.json();
       setTasks(data.tasks);
-      //console.log(data.tasks)
+     // console.log(data.tasks)
     }
 
     fetchTasks();
     setInterval(fetchTasks,1000);
   }, []);
-  
-  
+ 
+
 
   function onSubmit(e) {
     e.preventDefault();
@@ -51,6 +56,9 @@ function App() {
       )
   };
 
+ 
+
+
 
   return (
     <div className="App">
@@ -60,9 +68,15 @@ function App() {
       <form onSubmit={onSubmit}>
         <input id="add" ref={inputText} type="text" placeholder="Tache à faire.." />
         &nbsp; <button >Ajouter</button>
-      </form>
+        <br></br>
+        <p style={{color:"white"}}>Filtre</p>
+        </form>
+        <button onClick={FiltreAFaire}>A faire</button>  &nbsp;
+        <button>Fini</button>
+      
       <Tasks tasks={tasks} />
       <button style={{marginTop:"50px"}}  onClick={deleteAllTask}>Supprimer Tout</button>
+      
     </div>
   );
 }

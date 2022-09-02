@@ -9,6 +9,7 @@ exports.listAllTasks = async (req, res) => {
             tasks: tasks.map((task) => ({
               _id: task.id,
               text: task.text,
+              etat: task.etat,
              
             })),
           });
@@ -40,6 +41,21 @@ exports.createATask = async (req, res) => {
         });
     
 }
+
+exports.getTaskByEtat = (req, res) => {
+    TaskModel.findOne({etat : req.params.task_etat}, (error, task) => {
+        if (error) {
+            res.status(500);
+            console.log(error);
+            res.json({ message: "Erreur serveur." });
+        }
+        else {
+            res.status(200);
+            res.json(task);
+        }
+    });
+}
+
 
 exports.getATask = (req, res) => {
     TaskModel.findById(req.params.task_id, (error, task) => {

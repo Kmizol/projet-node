@@ -5,7 +5,7 @@ function Tasks({ tasks }) {
     <div>
       {tasks.map((task) => (
         
-        <Task key={task._id} id={task._id} text={task.text} />
+        <Task key={task._id} id={task._id} text={task.text} etat={task.etat} />
       ))}
     </div>
   );

@@ -8,6 +8,10 @@ let taskSchema = new Schema({
     type:String,
     required: true
    },
+   etat:{
+   type:Boolean,
+   default:"0"
+   }
 },{versionKey: false});
 
 const TaskModel = mongoose.model('Objectif', taskSchema);
